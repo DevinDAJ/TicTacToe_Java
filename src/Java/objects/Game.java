@@ -4,7 +4,7 @@ import Java.Main;
 import Java.enums.GameState;
 import Java.enums.SeedType;
 
-import static Java.Main.board;
+import static Java.Main.*;
 
 public class Game {
 
@@ -22,23 +22,23 @@ public class Game {
                 board[row][col] = SeedType.EMPTY.ordinal();  // all cells empty
             }
         }
-        Main.currentState = GameState.PLAYING.ordinal(); // ready to play
-        Main.currentPlayer = firstPlayer;  // choosen Player plays first
+        currentState = GameState.PLAYING.ordinal(); // ready to play
+        currentPlayer = firstPlayer;  // choosen Player plays first
     }
 
     /** Update the "currentState" after the player with "theSeed" has placed on
      (currentRow, currentCol). */
     public void updateGame(int theSeed, int currentRow, int currentCol) {
         if (hasWon(theSeed, currentRow, currentCol, ROWSCOLS)) {  // check if winning move
-            Main.currentState = (theSeed == SeedType.CROSS.ordinal()) ? GameState.CROSS_WON.ordinal() : GameState.NOUGHT_WON.ordinal();
+            currentState = (theSeed == SeedType.CROSS.ordinal()) ? GameState.CROSS_WON.ordinal() : GameState.NOUGHT_WON.ordinal();
         } else if (isTie()) {  // check for draw
-            Main.currentState = GameState.TIE.ordinal();
+            currentState = GameState.TIE.ordinal();
         }
         // Otherwise, no change to currentState (still PLAYING).
     }
 
     /** Return true if it is a draw (no more empty cell) */
-    private boolean isTie() {
+    public boolean isTie() {
         for (int row = 0; row < ROWSCOLS; ++row) {
             for (int col = 0; col < ROWSCOLS; ++col) {
                 if (board[row][col] == SeedType.EMPTY.ordinal()) {

@@ -2,6 +2,7 @@ package Java.objects;
 
 import Java.Main;
 import Java.enums.SeedType;
+import static Java.Main.*;
 
 public class Player {
 
@@ -22,12 +23,12 @@ public class Player {
             } else {
                 System.out.print("Player 'O', enter your move (row[1-"+ ROWSCOLS+"] column[1-"+ ROWSCOLS+"]): ");
             }
-            int row = Main.in.nextInt() - 1;  // array index starts at 0 instead of 1
-            int col = Main.in.nextInt() - 1;
-            if (row >= 0 && row < ROWSCOLS && col >= 0 && col < ROWSCOLS && Main.board[row][col] == SeedType.EMPTY.ordinal()) {
-                Main.currentRow = row;
-                Main.currentCol = col;
-                Main.board[Main.currentRow][Main.currentCol] = theSeed;  // update game-board content
+            int row = in.nextInt() - 1;  // array index starts at 0 instead of 1
+            int col = in.nextInt() - 1;
+            if (row >= 0 && row < ROWSCOLS && col >= 0 && col < ROWSCOLS && board[row][col] == SeedType.EMPTY.ordinal()) {
+                currentRow = row;
+                currentCol = col;
+                board[currentRow][currentCol] = theSeed;  // update game-board content
                 validInput = true;  // input okay, exit loop
             } else {
                 System.out.println("This move at (" + (row + 1) + "," + (col + 1)
